@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.berry.aptgetbuy.mapper.ComplexMapper">
+
+    <select id="findByAddr" resultType="Complex">
+        SELECT *
+        FROM complex
+        WHERE addr_lv1 = #{state}
+        AND addr_lv2 = #{city}
+        AND addr_lv4 = #{town};
+    </select>
+
+</mapper>

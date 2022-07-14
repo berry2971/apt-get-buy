@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.berry.aptgetbuy.mapper.ArticleMapper">
+
+    <insert id="save" parameterType="Article" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO article(board_name, subject, title, author, content)
+        VALUES (#{board_name}, #{subject},#{title}, #{author}, #{content});
+    </insert>
+
+    <select id="findById" resultType="Article">
+        SELECT id, board_name, subject, title, author, write_time, content
+        FROM article
+        WHERE id = #{id};
+    </select>
+
+    <select id="findByBoardNameAndOffsetAndLimit" resultType="Article">
+        SELECT id, board_name, subject, title, author, write_time, content
+        FROM article
+        WHERE board_name = #{boardName}
+        ORDER BY write_time desc
+        LIMIT #{offset}, #{articlesPerPage};
+    </select>
+
+    <update id="modify" parameterType="Article">
+        UPDATE article
+        SET board_name = #{board_name},
+            title = #{title},
+            subject = #{subject},
+            content = #{content}
+        WHERE id = #{id};
+    </update>
+
+    <delete id="remove">
+        DELETE FROM article
+        WHERE id = #{id};
+    </delete>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.berry.aptgetbuy.mapper.DistrictMapper">
+
+    <select id="findLv2" resultType="java.lang.String">
+        SELECT DISTINCT addr_lv2
+        FROM district
+        WHERE addr_lv1 = #{lv1} AND addr_lv2 != ''
+        ORDER BY addr_lv2;
+    </select>
+
+    <select id="findLv3" resultType="java.lang.String">
+        SELECT DISTINCT addr_lv3
+        FROM district
+        WHERE addr_lv1 = #{lv1} AND addr_lv2 = #{lv2} AND addr_lv3 != ''
+        ORDER BY addr_lv3;
+    </select>
+
+</mapper>
